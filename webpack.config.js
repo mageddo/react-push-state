@@ -3,7 +3,9 @@ module.exports = {
 	entry: './src/index.js',
 	output: {
 		path: path.resolve(__dirname, 'build'),
-		filename: 'index.js'
+		filename: 'index.js',
+		libraryTarget: 'umd',
+		library: 'ReactComponentNpm'
 	},
 	module: {
 		loaders: [{
