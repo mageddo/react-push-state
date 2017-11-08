@@ -1,7 +1,7 @@
 ### Building the lib
 
 ```bash
-docker-compose up -d rps-compiler --force-recreate &&\
+docker-compose up -d --force-recreate rps-compiler &&\
 docker exec -it rps-compiler sh -c 'npm install && npm run build'
 docker-compose stop rps-compiler
 ```
