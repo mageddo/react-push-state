@@ -3,25 +3,16 @@ module.exports = {
 	entry: './src/index.js',
 	output: {
 		path: path.resolve(__dirname, 'build'),
-		filename: 'index.js',
-		libraryTarget: 'commonjs2'
+		filename: 'index.js'
 	},
 	module: {
-		rules: [
-			{
-				test: /\.js$/,
-				include: path.resolve(__dirname, 'src'),
-				exclude: /(node_modules|bower_components|build)/,
-				use: {
-					loader: 'babel-loader',
-					options: {
-						presets: ['env']
-					}
-				}
+		loaders: [{
+			test: /\.js?$/,
+			exclude: /(node_modules|bower_components)/,
+			loader: 'babel-loader',
+			query: {
+				presets: ['es2015', 'stage-2']
 			}
-		]
-	},
-	externals: {
-		'react': 'commonjs react'
+		}]
 	}
 };

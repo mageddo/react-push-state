@@ -1,0 +1,10 @@
+version: '2'
+services:
+  rps-compiler:
+    container_name: rps-compiler
+    image: node:8.7.0
+    command: tail -f /dev/null
+    volumes:
+      - $PWD/:/app
+    working_dir: /app
+    network_mode: bridge
