@@ -1,0 +1,17 @@
+version: '2'
+services:
+
+  compiler-app:
+    container_name: compiler-app
+    image: node:8.7.0
+    volumes:
+      - $PWD/:/app
+    working_dir: /app
+
+# Run the app
+  react-state-sample:
+    extends: compiler-app
+    container_name: react-state
+    hostname: sample1.react-state.dev
+    command: sh -c 'npm install && npm start'
+    network_mode: bridge
