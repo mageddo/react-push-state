@@ -2,7 +2,7 @@ import React from 'react';
 
 export default class Router {
 
-	static map = {};
+	// static requestMap = {};
 	static observers = [];
 	static options;
 
@@ -19,8 +19,8 @@ export default class Router {
 	 * Register listeners to be trigered when a new page must be load
 	 * observer - a React.component, the .pushState method will be called when a page must be loaded
 	 */
-	static register(observer, map){
-		Router.observers.push({observer: observer, map: map})
+	static register(observer, requestMap){
+		Router.observers.push({observer: observer, requestMap: requestMap})
 	}
 
 	/**
@@ -77,7 +77,7 @@ export default class Router {
 		Router.observers.forEach(o => {
 			console.debug('m=doLoad, status=call-observer, observerIsNull=%o, state=%o', o == null, state);
 			if(!state.page) {
-				Router.invoke(state, o.map);
+				Router.invoke(state, o.requestMap);
 			}else{
 				if(o.observer.load !== undefined){
 					o.observer.load(state);
@@ -87,24 +87,24 @@ export default class Router {
 	}
 
 	/**
-	 * Call the respective function in map if it exists
+	 * Call the respective function in requestMap if it exists
 	 * The callback will have the state as parameter
 	 * If no one key matches then 404 key will be called
 	 */
-	static invoke(state, map){
-		var keys = Object.keys(map);
+	static invoke(state, requestMap){
+		var keys = Object.keys(requestMap);
 		for(var i=0; i < keys.length; i++){
 			var key = keys[i], pathVar;
 			if((pathVar = new RegExp(key).exec(state.path)) != null){
 				console.debug('m=invoke, status=invoking, state=%s, key=%s, pathVar=%o', state, key, JSON.stringify(pathVar));
 				var data = Object.assign({}, state, {pathVar: pathVar.splice(1), query: Router.parseQuery(state.queryString)});
-				map[key].call(data, data);
+				requestMap[key].call(data, data);
 				return data;
 			}
 		}
 		console.debug('m=invoke, status=not-found, path=%s', state.path);
-		if(map['404']){
-			map['404'].call(state, state);
+		if(requestMap['404']){
+			requestMap['404'].call(state, state);
 		}
 	}
 
