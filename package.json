@@ -2,6 +2,7 @@
   "name": "react-push-state",
   "version": "1.0.5",
   "private": false,
+  "repository": "mageddo/react-push-state",
   "main": "build/index.js",
   "dependencies": {
     "react": "16.0.0",
