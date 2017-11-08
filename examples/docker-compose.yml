@@ -9,10 +9,12 @@ services:
       - $PWD/../build/:/app/node_modules/react-push-state
     working_dir: /app
 
-# Run the app
+  # Run the app
   react-state-sample:
     extends: compiler-app
     container_name: react-state
     hostname: sample1.react-state.dev
     command: sh -c 'npm install && npm start'
+    ports:
+      - 3000:3000
     network_mode: bridge
