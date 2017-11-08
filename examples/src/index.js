@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Router, {Link} from "./route/Router.js"
+import Router, {Link} from "react-state"
 import Locator from "./Locator.js"
 import "./index.css"
 
