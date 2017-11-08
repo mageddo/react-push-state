@@ -1,6 +1,6 @@
 {
   "name": "react-push-state",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "private": false,
   "main": "build/index.js",
   "dependencies": {
@@ -19,6 +19,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --watch",
-    "build": "webpack"
+    "build": "webpack",
+    "prepublish": "npm run build"
   }
 }
