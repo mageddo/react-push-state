@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Link } from "../route/Router.js"
+import { Link } from "react-push-state"
 
 export default class UserList extends Component {
 
